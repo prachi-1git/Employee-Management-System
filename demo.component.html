@@ -1,0 +1,130 @@
+<mat-toolbar color="accent" class="navbar2">
+  <div class="container mt-3 ">
+    <div class="col-md-auto">
+      <div class="row">
+        <div class="mat-card mat-elevation " class="headercolor">Employees Details </div>
+      </div>
+    </div>
+  </div>
+
+  
+</mat-toolbar>
+
+<div class="container mt-3 ">
+  <mat-card>
+    <form [formGroup]="myform">
+      <div class="row">
+
+        <div class="col-md-4 ">
+          <mat-form-field appearance="standard">
+            <mat-label>Name of Person</mat-label>
+            <input matInput placeholder=" Name of Person" name="Name" formControlName="Name" required>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-4 ">
+          <mat-form-field appearance="standard">
+            <mat-label>State of Person</mat-label>
+            <input matInput placeholder=" State of Person" name="State" formControlName="State" required>
+          </mat-form-field>
+        </div>
+
+
+        <div class="col-md-2 ">
+          <mat-radio-group aria-label="Gender" formControlName="Gender">
+            <mat-option value=search>Select Gender</mat-option>
+            <mat-radio-button value=male>male</mat-radio-button>
+            <mat-radio-button value=female>female</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <div class="col-md-4 ">
+          <mat-form-field appearance="standard">
+            <mat-label>Salary of Person</mat-label>
+            <input matInput placeholder=" Salary of Person" name="Salary" formControlName="Salary" required>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-4 ">
+          <mat-form-field appearance="standard">
+            <mat-label>MobileNo of Person</mat-label>
+            <input matInput placeholder=" MobileNo of Person" name="MobileNo" formControlName="MobileNo" required>
+          </mat-form-field>
+        </div>
+
+
+        
+      </div>
+    </form>
+
+    <div class="col-md-12 " style="text-align:center ;">
+      <button mat-raised-button class="save-btn" class="btn btn-primary " type="submit"
+        (click)="onInsertUpdateUserDefinitionInfoClick()"
+        matTooltip="Info about the action">{{BtnSaveUpdateText}}</button>&nbsp;
+
+      <button mat-raised-button class="cancel-btn" class="btn btn-primary " (click)="onClearUserDefinitionInfo()"
+        matTooltip="Info about the action">Clear</button>&nbsp;
+
+      <button mat-raised-button class="View-btn" class="btn btn-primary " type="submit"
+        (click)="ViewUserDefinitionInfo()" matTooltip="Info about the action">View</button>&nbsp;
+    </div>
+  </mat-card>
+
+  <mat-card>
+    <div class="table-padding">
+      <div class="example-container " class='table-responsive mat-elevation-z8'>
+        <mat-table [dataSource]="dataSource" matSort>
+
+          <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef class="table-actions" class="btn btn-primary "> Action </mat-header-cell>
+            <mat-cell *matCellDef="let row; let i = index">
+
+              <button mat-icon-button class="table-edit" matTooltip="Edit" (click)="EditUserDefinitionInfo(row)">
+                <app-edit-icon></app-edit-icon>
+              </button>
+
+              <button mat-icon-button class="table-delete" matTooltip="Delete"
+                (click)="onDeleteUserDefinitionInfo(row.ID,i)">
+                <app-mat-icon-delete></app-mat-icon-delete>
+              </button>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="Name">
+            <mat-header-cell *matHeaderCellDef class="btn btn-primary "> Name </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.Name}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="State">
+            <mat-header-cell *matHeaderCellDef class="btn btn-primary "> State </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.State}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="Gender">
+            <mat-header-cell *matHeaderCellDef class="btn btn-primary "> Gender </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.Gender}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="Salary">
+            <mat-header-cell *matHeaderCellDef class="btn btn-primary "> Salary </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.Salary}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="MobileNo">
+            <mat-header-cell *matHeaderCellDef class="btn btn-primary "> MobileNo </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.MobileNo}}</mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns;"></mat-header-row>
+
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+        </mat-table>
+      </div>
+    </div>
+  </mat-card>
+
+  
+    
+
+    
